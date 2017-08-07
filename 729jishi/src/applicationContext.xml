@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+	
+	<context:component-scan base-package="com.spring.service,com.*.dao,com.spring.controller"></context:component-scan>
+	  <!-- 通过 Spring 工具类读取资源文件-->
+	<util:properties id="propsReader" location="classpath:jdbc.properties"></util:properties>
+	
+	<!-- 数据源(连接池)组件: pool | db -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	<property name="driverClass" value="#{propsReader[driver]}"/>
+	<property name="jdbcUrl" value="#{propsReader[url]}"/>
+	<property name="user" value="#{propsReader[username]}"/>
+	<property name="password" value="#{propsReader[password]}"/>
+	
+	<!-- 池中最小个数-->
+    <property name="minPoolSize" value="2"/>
+    <!--池中最大个数-->
+    <property name="maxPoolSize" value="20"/>
+    <!--一次连接最多可执行 SQL 语句个数-->
+    <property name="maxStatements" value="100"/>
+    <!-- 超时设置 (毫秒)-->
+    <property name="checkoutTimeout" value="1800"/>
+   <!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+    <property name="acquireIncrement" value="2"/>
+
+	</bean>
+	
+	  <!--会话工厂组件: sessionFactory | pool | db -->
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	 <!-- Mapper | sessionFactory | pool | db -->
+  <!--配置 Mapper(dao)接口的自动扫描(扫描指定包下的 Mapper 接口自动实例)-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="com.spring.dao"></property>
+	</bean>
+	
+	 <!-- 开启aop操作 -->
+	<!--<aop:aspectj-autoproxy></aop:aspectj-autoproxy>   -->
+	
+	<!-- 事务管理器-->
+  <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
+
+  <!-- 开启注解事务-->
+  <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

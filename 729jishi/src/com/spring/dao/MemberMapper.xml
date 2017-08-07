@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.dao.MemberMapper">
+<cache  eviction="LRU" flushInterval="60000" size="512" readOnly="ture"/>
+
+<resultMap type="com.spring.pojo.Member" id="result-findall">
+	<id property="id" column="m_id"/>
+	<result property="name" column="m_name"/>
+	<result property="phone" column="m_phone"/>
+	<result property="level" column="m_level"/>
+	<result property="inTime" column="m_in_time"/>
+	<result property="cardNo" column="m_card_no"/>
+</resultMap>
+
+<select id="findall" resultMap="result-findall">
+select * from t_member
+</select>
+
+</mapper>
