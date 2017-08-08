@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.MemberMapper;
@@ -16,32 +17,39 @@ public class MemberService {
 	private MemberMapper memberMapper;
 	
 	
-	//²éÕÒËùÓĞÊı¾İ
+	//æŸ¥è¯¢æ‰€æœ‰æ•°æ®
 	public List<Member> findall(){
 		return memberMapper.findall();
 	}
 	
-	//¸ù¾İID²éÕÒÄ³¸öÊı¾İ
+	//æ ¹æ®IDæŸ¥è¯¢æŸä¸€è·³æ•°æ®
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Member find(int id){
 		return memberMapper.find(id);
 		
 	
 	}
 	
-	//¸üĞÂ
+	//æ›´æ–°
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public void update(Member member){
 	
 		 memberMapper.update(member);
 	}
 	
-	//É¾³ı
+	//æ ¹æ®æ‰§è¡ŒIDåˆ é™¤
 	public  void delete(int id){
 		memberMapper.delete(id);
 	}
 	
-//´´½¨Êı¾İ
+	//æ·»åŠ ç”¨æˆ·
 	public  void create(Member member){
 		memberMapper.add(member);
+	}
+	
+	//æ¨¡ç³ŠæŸ¥è¯¢
+	public List<Member> findByName(String name,String cardNo){
+		return memberMapper.findByName(name, cardNo);
 	}
 }
 	

@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h3><a href="./shouye">首页</a></h3>
 
+<h1 align="center">会员管理系统</h1>
+<h3 align="center">添加会员</h3>
+<center>
 <form action="./add" method="post">
 
 <label>姓名：</label>
@@ -28,5 +32,6 @@
 <label></label>
 <input type="submit" value="保存">
 </form>
+</center>
 </body>
 </html>

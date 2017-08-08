@@ -9,8 +9,9 @@
 <title>主页</title>
 </head>
 <body>
+	<h3><a href="./shouye">首页</a></h3>
 <h1 align="center">会员管理系统</h1>
-
+<center>
 <form action="./chaxun" >
 <label>姓名：</label>
 <input name="name" type="text">
@@ -19,6 +20,7 @@
 <label></label>
 <input type="submit" value="查询">
 </form>
+</center>
 
 <form action="./create" method="post">
 <div align="right">

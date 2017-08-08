@@ -2,19 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.dao.MemberMapper">
-<cache  eviction="LRU" flushInterval="60000" size="512" readOnly="ture"/>
+<!-- 
+	<cache eviction="LRU" flushInterval="60000" size="512" readOnly="ture" /> -->
 
-<resultMap type="com.spring.pojo.Member" id="result-findall">
-	<id property="id" column="m_id"/>
-	<result property="name" column="m_name"/>
-	<result property="phone" column="m_phone"/>
-	<result property="level" column="m_level"/>
-	<result property="inTime" column="m_in_time"/>
-	<result property="cardNo" column="m_card_no"/>
-</resultMap>
+	<!-- 查询所有数据 -->
+	
+	<resultMap type="com.spring.pojo.Member" id="result-findall">
+		<id property="id" column="m_id" />
+		<result property="name" column="m_name" />
+		<result property="phone" column="m_phone" />
+		<result property="level" column="m_level" />
+		<result property="inTime" column="m_in_time" />
+		<result property="cardNo" column="m_card_no" />
+	</resultMap>
 
-<select id="findall" resultMap="result-findall">
-select * from t_member
-</select>
+	<select id="findall" resultMap="result-findall">
+		select * from t_member
+	</select>
+	
+	<!-- 查询所有数据结尾 -->
 
+
+	<!-- 根据ID查询某一条数据 -->
+	
+	<select id="find" parameterType="int" resultMap="result-find">
+		select * from t_member where m_id = #{id}
+	</select>
+
+	<resultMap type="com.spring.pojo.Member" id="result-find">
+		<id property="id" column="m_id" />
+		<result property="name" column="m_name" />
+		<result property="phone" column="m_phone" />
+		<result property="level" column="m_level" />
+		<result property="inTime" column="m_in_time" />
+		<result property="cardNo" column="m_card_no" />
+	</resultMap>
+	
+	<!-- 根据ID查询某一条数据结尾 -->
+
+
+	<!-- 更新 -->
+	
+	<update id="update" parameterType="com.spring.pojo.Member">
+		update t_member set m_name =
+		#{name},m_phone=#{phone},m_level=#{level},m_in_time=#{inTime},m_card_no
+		=#{cardNo} where m_id=#{id}
+	</update>
+	
+	<!-- 更新 结尾 -->
+
+
+	<!-- 模糊查询 -->
+	
+	<resultMap type="com.spring.pojo.Member" id="result-findByName">
+		<id property="id" column="m_id" />
+		<result property="name" column="m_name" />
+		<result property="phone" column="m_phone" />
+		<result property="level" column="m_level" />
+		<result property="inTime" column="m_in_time" />
+		<result property="cardNo" column="m_card_no" />
+	</resultMap>
+
+	<select id="findByName" resultMap="result-findByName">
+		select * from t_member
+		<where>
+			1=1
+		</where>
+		<if test="name!=null and name!=''">
+			and m_name like#{name}
+			<if test="cardNo!=null and cardNo!=''">
+				and m_card_no like #{cardNo}
+			</if>
+
+		</if>
+
+	</select>
+	
+	<!-- 模糊查询结尾 -->
 </mapper>
