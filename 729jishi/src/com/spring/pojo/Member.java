@@ -5,14 +5,15 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 public class Member implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private Integer id;
 	private String name;
 	private String phone;
-	private int level;
+	private Integer level;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date inTime;
 	private String cardNo;

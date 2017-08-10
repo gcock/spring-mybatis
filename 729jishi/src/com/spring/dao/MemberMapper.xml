@@ -7,7 +7,7 @@
 
 	<!-- 查询所有数据 -->
 	
-	<resultMap type="com.spring.pojo.Member" id="result-findall">
+	<resultMap type="Member" id="result-findall">
 		<id property="id" column="m_id" />
 		<result property="name" column="m_name" />
 		<result property="phone" column="m_phone" />
@@ -29,7 +29,7 @@
 		select * from t_member where m_id = #{id}
 	</select>
 
-	<resultMap type="com.spring.pojo.Member" id="result-find">
+	<resultMap type="Member" id="result-find">
 		<id property="id" column="m_id" />
 		<result property="name" column="m_name" />
 		<result property="phone" column="m_phone" />
@@ -43,7 +43,7 @@
 
 	<!-- 更新 -->
 	
-	<update id="update" parameterType="com.spring.pojo.Member">
+	<update id="update" parameterType="Member">
 		update t_member set m_name =
 		#{name},m_phone=#{phone},m_level=#{level},m_in_time=#{inTime},m_card_no
 		=#{cardNo} where m_id=#{id}
@@ -54,7 +54,7 @@
 
 	<!-- 模糊查询 -->
 	
-	<resultMap type="com.spring.pojo.Member" id="result-findByName">
+	<resultMap type="Member" id="result-findByName">
 		<id property="id" column="m_id" />
 		<result property="name" column="m_name" />
 		<result property="phone" column="m_phone" />

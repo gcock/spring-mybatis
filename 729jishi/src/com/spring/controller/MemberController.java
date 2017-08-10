@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,12 +25,12 @@ public class MemberController {
 	@Resource(name = "memberService")
 	private MemberService memberService;
 	 
-	@InitBinder    
+	/*@InitBinder    
     protected void initBinder(WebDataBinder binder) {    
 
         binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));    
 
-    }   
+    }   */
 	
 	// 查询所有的信息
 	@RequestMapping("/")
@@ -50,10 +52,13 @@ public class MemberController {
 	}
 
 	// 更新
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String update(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable int id, Member member) {
-
-		memberService.update(member);
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(Member member2) {
+//		System.out.println(id+" "+name+" "+phone+" "+level+" "+cardNo);
+		
+		System.out.println(123456);
+		//System.out.println(id);
+		memberService.update(member2);
 		return "redirect:/";
 	}
 

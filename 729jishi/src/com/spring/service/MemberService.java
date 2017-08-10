@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,9 +32,9 @@ public class MemberService {
 	}
 	
 	//更新
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public void update(Member member){
 	
+//		member.setInTime(new Date());
 		 memberMapper.update(member);
 	}
 	

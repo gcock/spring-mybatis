@@ -51,7 +51,7 @@
 
 <td>
 <a href="${m.id }">修改</a>
-<form action="./${m.id }/delete" method="post">
+<form action="${m.id }/delete" method="post">
 	<input type="submit" value="删除">
 </form>
 </td>

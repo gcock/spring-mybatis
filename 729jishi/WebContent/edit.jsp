@@ -11,7 +11,7 @@
 
 	<h3><a href="./shouye">首页</a></h3>
 
-<form action="${l.id }" method="post">
+<form action="update" method="post">
 <label>序号：</label>	
 <input name="id" readonly="readonly" value="${m1.id }"><br>
 
@@ -25,10 +25,10 @@
 <input name="level" type="text" value="${m1.level }"><br>
 
 <label>会员卡号：</label>
-<input name="inTime" type="text" value="${m1.cardNo }"><br>
+<input name="cardNo" type="text" value="${m1.cardNo }"><br>
 
-<label>入会时间：</label>
-<input name="cardNo" type="text" value="${m1.inTime }"><br>
+ <label>入会时间：</label>
+<input name="inTime" type="text" value=<fmt:formatDate value="${m1.inTime }" pattern="yyyy-MM-dd"/>><br> 
 
 <label></label>
 <input type="submit" value="保存">

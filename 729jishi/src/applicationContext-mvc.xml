@@ -11,10 +11,10 @@
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/"/>
 	<property name="suffix" value=".jsp"/>
- <property name="contentType" value="text/html;charset=UTF-8"></property>
+	 <property name="contentType" value="text/html;charset=UTF-8"></property>
 	</bean>
 	
- <mvc:annotation-driven conversion-service="conversionService" />  
+ <!-- <mvc:annotation-driven conversion-service="conversionService" />  
 	
  <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">    
         <property name="converters">
@@ -23,7 +23,7 @@
             </set>
         </property> 
 </bean>  
-<bean id="dateConvert" class="com.spring.fmt.DateConverter"/>
+<bean id="dateConvert" class="com.spring.fmt.DateConverter"/> -->
 </beans>
 
 
